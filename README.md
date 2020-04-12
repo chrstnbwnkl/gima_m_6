@@ -13,3 +13,13 @@ Before you can start editing, you need node.js. Download it [here](https://nodej
 npm install
 ```
 Now you can start editing!
+
+- [ ] Mercury
+- [x] Venus
+- [x] Earth (Orbit/Moon)
+- [x] Mars
+- [ ] Jupiter
+- [ ] Saturn
+- [ ] Uranus
+- [ ] Neptune
+- [ ] Comet Haley
