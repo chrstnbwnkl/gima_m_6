@@ -14,12 +14,7 @@ npm install
 ```
 Now you can start editing!
 
-- [ ] Mercury
-- [x] Venus
-- [x] Earth (Orbit/Moon)
-- [x] Mars
-- [ ] Jupiter
-- [ ] Saturn
-- [ ] Uranus
-- [ ] Neptune
-- [ ] Comet Haley
+- [x] Add connection to Postgres server
+- [ ] Add pedestrian count data periodically to Postgres
+- [ ] Integrate Python
+...
