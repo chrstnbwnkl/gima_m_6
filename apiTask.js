@@ -5,17 +5,18 @@ dotenv.config();
 const { Pool, Client } = require('pg');
 const conString = process.env.DATABASE_URL;
 
-var job = new CronJob('*/15 * * * *', async function() {
-    await axios.get('https://data.melbourne.vic.gov.au/resource/d6mv-s43h.csv?$$app_token=f7dQeUuh1t2suGE3q3WMH8PPF&$limit=60')
+var job = new CronJob('*/1 * * * *', async function() {
+    await axios.get('https://data.melbourne.vic.gov.au/resource/d6mv-s43h.json?$$app_token=f7dQeUuh1t2suGE3q3WMH8PPF&$limit=60')
     .then( response => {
         const pool = new Pool({
             connectionString: conString
         });
+        const ped_count = JSON.stringify(response.data);
         pool.query(`
-        SELECT * FROM test_table;
+        INSERT INTO ped_count SELECT * FROM jsonb_populate_recordset(NULL::ped_count, '${ped_count}'::jsonb); 
         `
-            , (err, res) => {
-            console.log(err, res, "Test")
+        , (err, res) => {
+            console.log(err, res)
             pool.end()
           });
   })
