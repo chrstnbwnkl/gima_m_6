@@ -13,3 +13,8 @@ Before you can start editing, you need node.js. Download it [here](https://nodej
 npm install
 ```
 Now you can start editing!
+
+- [x] Add connection to Postgres server
+- [ ] Add pedestrian count data periodically to Postgres
+- [ ] Integrate Python
+...
