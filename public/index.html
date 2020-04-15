@@ -36,17 +36,19 @@
     </nav>
     </div>
     <div id="input" style="background-color: #38f094;">
+        <form action="submitCoords">
         <div class="container" id="input-container" style="background-color: #38f094;">
-            <div class="input-group" style="padding-top: 10px;"><input class="form-control" type="text"></div>
-            <div class="input-group" style="padding: 0;padding-top: 10px;"><input class="form-control" type="text">
-                <div class="input-group-append"><button class="btn btn-primary" type="button">Go!</button></div>
+            <div class="input-group" style="padding-top: 10px;"><input class="form-control" type="text" id="from" name="from" placeholder="From..."></div>
+            <div class="input-group" style="padding: 0;padding-top: 10px;"><input class="form-control" type="text" id="to" name="to" placeholder="To...">
+                <div class="input-group-append"><button type="submit" class="btn btn-primary" type="button" id="send">Go</button></div>
             </div>
         </div>
+    </form>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
-    <script src="assets/js/style.js"></script>
+    <script src="assets/js/client.js"></script>
 </body>
 
 </html>
