@@ -16,7 +16,7 @@ var job = new CronJob('*/1 * * * *', async function() {
         INSERT INTO ped_count SELECT * FROM jsonb_populate_recordset(NULL::ped_count, '${ped_count}'::jsonb); 
         `
         , (err, res) => {
-            console.log(err, res)
+            console.log(err, res);
             pool.end()
           });
   })
