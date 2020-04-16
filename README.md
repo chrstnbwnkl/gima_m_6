@@ -13,6 +13,13 @@ CREATE TABLE public.ped_count
     date_time timestamp without time zone
 )
 ```
+Second, you'll need Anaconda to run Python from. In the Anaconda prompt, create a new environment for the module 6 project with the following statements:
+```
+conda create --name m6
+conda install osmnx
+```
+Lastly, open the Anaconda navigator, activate the environment you just created and launch VS Code from there. Then, in VS Code, you might need to change the Python interpreter, which can be done by pressing CTRL + SHIFT + P and then type Python Interpreter. Select the Anaconda environment you just created and you're good to go!
+
 Things to do:
 
 - [x] Add connection to Postgres server
