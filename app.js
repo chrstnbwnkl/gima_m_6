@@ -9,7 +9,7 @@ app.use(express.static('public'));
 app.use(express.json({limit: '1mb'}));
 
 //Make scheduled API call
-//apiTask.apiUpdate();
+apiTask.apiUpdate();
 
 //Testing Python child process
 const spawn = require("child_process").spawn;
