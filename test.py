@@ -1,4 +1,13 @@
 import sys
+import osmnx as ox
+print('Geocoding...')
 
-print(sys.argv[1]+sys.argv[2]+"inside Python")
-sys.stdout.flush()
+def navigate(fromA, toB):
+    A = ox.geocode(fromA)
+    B = ox.geocode(toB)
+    print(A)
+    print(B)
+    sys.stdout.flush()
+
+if __name__ == "__main__":
+    navigate(sys.argv[1], sys.argv[2])
