@@ -15,13 +15,6 @@ app.use(express.json({limit: '1mb'}));
 //Make scheduled API call
 //apiTask.apiUpdate();
 
-//Get user input
-// app.get('/', (req, res) => {
-//     res.json({
-//         'message': 'Input received'
-//     })
-// });
-
 function isValid(x) {
     return x.from && x.from.toString().trim() !== '' &&
         x.to && x.to.toString().trim() !== '';
