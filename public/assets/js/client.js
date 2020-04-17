@@ -1,3 +1,4 @@
+const apiURL = 'http://localhost:3000/navigate';
 var coord;
 const mymap = L.map('issmap', {
     zoomControl: false
@@ -23,5 +24,12 @@ form.addEventListener('submit', event => {
         to
     }
     console.log(fromTo);
+    fetch(apiURL, {
+        method: 'POST',
+        body: JSON.stringify(fromTo),
+        headers: {
+            'content-type': 'application/json'
+        }  
+    })
 });
 
