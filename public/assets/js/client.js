@@ -23,7 +23,6 @@ form.addEventListener('submit', event => {
         from,
         to
     }
-    //console.log(fromTo);
     async function getCoords() {
         let response = await fetch(apiURL, {
             method: 'POST',
@@ -36,6 +35,7 @@ form.addEventListener('submit', event => {
         console.log(typeof(coords.message[0]));
         L.marker(coords.message[0]).addTo(mymap);
         L.marker(coords.message[1]).addTo(mymap);
+        btn.innerHTML = 'Go';
     }
     getCoords()
     .catch(err => {
