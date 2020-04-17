@@ -23,13 +23,22 @@ form.addEventListener('submit', event => {
         from,
         to
     }
-    console.log(fromTo);
-    fetch(apiURL, {
-        method: 'POST',
-        body: JSON.stringify(fromTo),
-        headers: {
-            'content-type': 'application/json'
-        }  
-    })
+    //console.log(fromTo);
+    async function getCoords() {
+        let response = await fetch(apiURL, {
+            method: 'POST',
+            body: JSON.stringify(fromTo),
+            headers: {
+                'content-type': 'application/json'
+            }  
+        });
+        let coords = await response.json();
+        console.log(typeof(coords.message[0]));
+        L.marker(coords.message[0]).addTo(mymap);
+        L.marker(coords.message[1]).addTo(mymap);
+    }
+    getCoords()
+    .catch(err => {
+        console.log(err);
+    });
 });
-
