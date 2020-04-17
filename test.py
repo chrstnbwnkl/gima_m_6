@@ -1,12 +1,13 @@
 import sys
 import osmnx as ox
-print('Geocoding...')
+import json
 
 def navigate(fromA, toB):
     A = ox.geocode(fromA)
     B = ox.geocode(toB)
-    print(A)
-    print(B)
+    lis = [A, B]
+    a = json.dumps(lis)
+    print(a)
     sys.stdout.flush()
 
 if __name__ == "__main__":
