@@ -1,5 +1,8 @@
-const apiURL = 'http://localhost:3000/navigate';
+const apiURL = 'http://localhost:5000/navigate';
 var coord;
+const form = document.querySelector("form");
+
+// Leaflet setup
 const mymap = L.map('issmap', {
     zoomControl: false
 }).setView([-37.812248, 144.962056], 15);
@@ -10,8 +13,13 @@ const attr = '&copy <a href="https://www.openstreetmap.org/copyright">OpenStreet
 const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const tiles = L.tileLayer(tileUrl,{ attr });
 tiles.addTo(mymap);
+mymap.on('click', function(e) {
+    var lat = e.latlng.lat;
+    document.getElementById('from').value = lat;
+});
 
-const form = document.querySelector("form");
+// Send address to server for geocoding and add results as markers to Leaflet
+
 form.addEventListener('submit', event => {
     event.preventDefault();
     const btn = document.getElementById('send');
