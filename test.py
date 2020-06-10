@@ -9,6 +9,7 @@ def navigate(fromA, toB):
     a = json.dumps(lis)
     print(a)
     sys.stdout.flush()
+    return lis
 
 if __name__ == "__main__":
     navigate(sys.argv[1], sys.argv[2])
