@@ -1,4 +1,5 @@
-const apiURL = 'http://localhost:5000/navigate';
+const textNav = 'http://localhost:5000/navigate';
+const coordNav = 'http://localhost:5000/route';
 var coord;
 const form = document.querySelector("form");
 
@@ -13,10 +14,27 @@ const attr = '&copy <a href="https://www.openstreetmap.org/copyright">OpenStreet
 const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const tiles = L.tileLayer(tileUrl,{ attr });
 tiles.addTo(mymap);
-mymap.on('click', function(e) {
-    var lat = e.latlng.lat;
-    document.getElementById('from').value = lat;
-});
+var sourceMarker = L.marker([-37.812248, 144.962056], {
+	draggable: true
+})
+	 .on("dragend", function(e) {
+        console.log(e.target._latlng);
+        var lat = e.target._latlng.lat;
+        var lon = e.target._latlng.lng;
+        document.getElementById('from').value = `${lon}, ${lat}`;
+	 })
+    .addTo(mymap);
+    
+var targetMarker = L.marker([-37.812348, 144.961056], {
+    draggable: true
+})
+     .on("dragend", function(e) {
+        console.log(e.target._latlng);
+        var lat = e.target._latlng.lat;
+        var lon = e.target._latlng.lng;
+        document.getElementById('to').value = `${lon}, ${lat}`;
+     })
+    .addTo(mymap);
 
 // Send address to server for geocoding and add results as markers to Leaflet
 
@@ -32,7 +50,7 @@ form.addEventListener('submit', event => {
         to
     }
     async function getCoords() {
-        let response = await fetch(apiURL, {
+        let response = await fetch(coordNav, {
             method: 'POST',
             body: JSON.stringify(fromTo),
             headers: {
@@ -40,9 +58,9 @@ form.addEventListener('submit', event => {
             }  
         });
         let coords = await response.json();
-        console.log(typeof(coords.message[0]));
-        L.marker(coords.message[0]).addTo(mymap);
-        L.marker(coords.message[1]).addTo(mymap);
+        for (i=0;i<coords.route.length;i++) {
+            L.geoJSON(JSON.parse(coords.route[i].geojson)).addTo(mymap);
+        }
         btn.innerHTML = 'Go';
     }
     getCoords()
@@ -50,3 +68,9 @@ form.addEventListener('submit', event => {
         console.log(err);
     });
 });
+// mymap.on('click', function(e) {
+//     var lat = e.latlng.lat;
+//     var lon = e.latlng.lng;
+//     document.getElementById('from').value = `${lon}, ${lat}`;
+//     var pos = L.marker().addTo(mymap);
+// });

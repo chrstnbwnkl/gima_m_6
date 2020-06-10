@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const apiTask = require('./apiTask');
 const cors = require('cors');
+const routing = require('./pg_Routing');
+const { exp_config } = require('./config/pg_config');
 var from;
 var to;
 var coords;
@@ -27,7 +28,6 @@ app.post('/navigate', (req, res) => {
     if (isValid(req.body)) {
         from = req.body.from.toString();
         to = req.body.to.toString();
-        console.log(from);
         const spawn = require("child_process").spawn;
         const pythonProcess = spawn('python',["./test.py", from, to]);
         pythonProcess.stdout.on('data', (data) => {
@@ -44,3 +44,15 @@ app.post('/navigate', (req, res) => {
     }
 });
 
+app.post('/route', (req, res, next) => {
+    console.log(req.body);
+    from = req.body.from;
+    to = req.body.to;
+    routing.route(from, to)
+      .then((result) => {
+        res.status(200).json(result);
+      })
+      .catch((reason) => {
+        res.status(500).json(reason);
+      });
+  });
