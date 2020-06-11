@@ -59,4 +59,8 @@ Things to do:
 - [x] Integrate OSMNx 
 - [x] Integrate Python
 - [ ] Build network from Melbourne open data pedestrian network for NetworkX usage
-- [ ] Expand website functionality
+- [ ] Show directions
+- [ ] Show shortest and least crowded routes
+- [ ] Show statistics comparing the two routes
+- [ ] Add "about" page
+- [ ] Customize map appearance
