@@ -1,5 +1,9 @@
-const apiURL = 'http://localhost:3000/navigate';
+const textNav = 'http://localhost:5000/navigate';
+const coordNav = 'http://localhost:5000/route';
 var coord;
+const form = document.querySelector("form");
+
+// Leaflet setup
 const mymap = L.map('issmap', {
     zoomControl: false
 }).setView([-37.812248, 144.962056], 15);
@@ -10,8 +14,30 @@ const attr = '&copy <a href="https://www.openstreetmap.org/copyright">OpenStreet
 const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const tiles = L.tileLayer(tileUrl,{ attr });
 tiles.addTo(mymap);
+var group = L.layerGroup(null);
+var sourceMarker = L.marker([-37.812248, 144.962056], {
+	draggable: true
+})
+	 .on("dragend", function(e) {
+        console.log(e.target._latlng);
+        var lat = e.target._latlng.lat;
+        var lon = e.target._latlng.lng;
+        document.getElementById('from').value = `${lon}, ${lat}`;
+	 })
+    .addTo(mymap);
+    
+var targetMarker = L.marker([-37.812348, 144.961056], {
+    draggable: true
+})
+     .on("dragend", function(e) {
+        console.log(e.target._latlng);
+        var lat = e.target._latlng.lat;
+        var lon = e.target._latlng.lng;
+        document.getElementById('to').value = `${lon}, ${lat}`;
+     })
+    .addTo(mymap);
 
-const form = document.querySelector("form");
+// Send address to server for geocoding and add results as markers to Leaflet
 form.addEventListener('submit', event => {
     event.preventDefault();
     const btn = document.getElementById('send');
@@ -24,7 +50,7 @@ form.addEventListener('submit', event => {
         to
     }
     async function getCoords() {
-        let response = await fetch(apiURL, {
+        let response = await fetch(coordNav, {
             method: 'POST',
             body: JSON.stringify(fromTo),
             headers: {
@@ -32,9 +58,12 @@ form.addEventListener('submit', event => {
             }  
         });
         let coords = await response.json();
-        console.log(typeof(coords.message[0]));
-        L.marker(coords.message[0]).addTo(mymap);
-        L.marker(coords.message[1]).addTo(mymap);
+        group.remove();
+        routeList = [];
+        for (i=0; i<coords.route.length; i++) {
+             routeList.push(L.geoJSON(JSON.parse(coords.route[i].geojson)))
+        }
+        group = L.layerGroup(routeList).addTo(mymap);
         btn.innerHTML = 'Go';
     }
     getCoords()
