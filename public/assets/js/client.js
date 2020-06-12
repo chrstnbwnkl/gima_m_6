@@ -14,6 +14,7 @@ const attr = '&copy <a href="https://www.openstreetmap.org/copyright">OpenStreet
 const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const tiles = L.tileLayer(tileUrl,{ attr });
 tiles.addTo(mymap);
+var group = L.layerGroup(null);
 var sourceMarker = L.marker([-37.812248, 144.962056], {
 	draggable: true
 })
@@ -37,7 +38,6 @@ var targetMarker = L.marker([-37.812348, 144.961056], {
     .addTo(mymap);
 
 // Send address to server for geocoding and add results as markers to Leaflet
-
 form.addEventListener('submit', event => {
     event.preventDefault();
     const btn = document.getElementById('send');
@@ -58,9 +58,12 @@ form.addEventListener('submit', event => {
             }  
         });
         let coords = await response.json();
-        for (i=0;i<coords.route.length;i++) {
-            L.geoJSON(JSON.parse(coords.route[i].geojson)).addTo(mymap);
+        group.remove();
+        routeList = [];
+        for (i=0; i<coords.route.length; i++) {
+             routeList.push(L.geoJSON(JSON.parse(coords.route[i].geojson)))
         }
+        group = L.layerGroup(routeList).addTo(mymap);
         btn.innerHTML = 'Go';
     }
     getCoords()
@@ -68,9 +71,3 @@ form.addEventListener('submit', event => {
         console.log(err);
     });
 });
-// mymap.on('click', function(e) {
-//     var lat = e.latlng.lat;
-//     var lon = e.latlng.lng;
-//     document.getElementById('from').value = `${lon}, ${lat}`;
-//     var pos = L.marker().addTo(mymap);
-// });

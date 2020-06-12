@@ -11,10 +11,10 @@
 </head>
 
 <body>
-    <div id="issmap"></div>
+    <!-- <div id="issmap"></div> -->
     <div id="navi" style="background-color: rgb(56,240,148);">
         <nav class="navbar navbar-light navbar-expand-md" style="height: 54px;">
-            <div class="container-fluid"><img style="width: 89px;height: 40px;" src="assets/img/decrowd_crop.png"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container-fluid"><a href="/"><img style="width: 89px;height: 40px;" src="assets/img/decrowd_crop.png"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div
                     class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
@@ -35,7 +35,7 @@
     </div>
     </nav>
     </div>
-    <div id="input" style="background-color: #38f094;">
+    <!-- <div id="input" style="background-color: #38f094;">
         <form action="submitCoords">
         <div class="container" id="input-container" style="background-color: #38f094;">
             <div class="input-group" style="padding-top: 10px;"><input class="form-control" type="text" id="from" name="from" placeholder="From..."></div>
@@ -44,7 +44,18 @@
             </div>
         </div>
     </form>
-    </div>
+    </div> -->
+    <div class="container" style="padding-top: 70px;">
+        <div class="row">
+          <div class="col">
+           <h1>What is this?</h1>
+           <p>The COVID-19 pandemic has had an impact on human mobility, especially in dense urban areas. In order to minimize the risk of contagion, people are advised to maintain a distance of 1.5 meters to each other. This is not always an easy task, especially as a pedestrian in a crowded public space. The goal of this project is to find out how geo-information can contribute to minimizing this risk for pedestrians. The City of Melbourne serves as a great playground for this investigation, as there is an existing pedestrian count system that delivers near real time information on the number of pedestrians walking at different locations throughout the city's downtown area. The result of this project is a navigation application that uses this count data as an input for a routing network with a custom cost that is updated four times an hour.</p>
+          </div>
+          <div class="col">
+            <h1>Who are we?</h1>
+            <p>We're a group of MSc Geo-information students at the University of Utrecht, the Netherlands. We have been building this application as part of an ongoing student project.</p>
+          </div>
+        </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>

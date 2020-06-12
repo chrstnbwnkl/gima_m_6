@@ -14,6 +14,11 @@ app.listen(5000, () => console.log('Listening at 5000'));
 app.use(express.static('public'));
 app.use(express.json({limit: '1mb'}));
 
+app.get('/about', function (req, res) {
+    res.sendFile( __dirname + "/" + "public/about.html" );
+ })
+
+ 
 //Make scheduled API call
 //apiTask.apiUpdate();
 
