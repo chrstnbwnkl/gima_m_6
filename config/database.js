@@ -53,15 +53,24 @@ const query = function (text, values, callback) {
 
 // Scheduled API query from Melbourne -- maybe change this to ID and total count only?
 var job = new CronJob('*/1 * * * *', async function() {
+    console.log('Performing CRON Job');
     await axios.get('https://data.melbourne.vic.gov.au/resource/d6mv-s43h.json?$$app_token=f7dQeUuh1t2suGE3q3WMH8PPF&$limit=60')
     .then( response => {
+      console.log(response);
         const ped_count = JSON.stringify(response.data);
         pool.query(`
-        INSERT INTO ped_count SELECT * FROM jsonb_populate_recordset(NULL::ped_count, '${ped_count}'::jsonb); 
+        UPDATE ped_count
+SET total_of_directions = api.total_of_directions,
+	time = api.time,
+	date = api.date,
+	date_time = api.date_time,
+	direction_1 = api.direction_1,
+	direction_2 = api.direction_2
+FROM (SELECT * FROM jsonb_populate_recordset(NULL::ped_count, '${ped_count}'::jsonb)) AS api
+WHERE api.sensor_id = ped_count.sensor_id; 
         `
         , (err, res) => {
             console.log(err, res);
-            pool.end()
           });
   })
     .catch(error => {
@@ -69,7 +78,7 @@ var job = new CronJob('*/1 * * * *', async function() {
   });
 });
 const apiUpdate = function() {
-    job.start;
+    job.start();
 }
 
 

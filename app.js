@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const routing = require('./pg_Routing');
+const database = require('./config/database');
 const { exp_config } = require('./config/pg_config');
 var from;
 var to;
@@ -20,7 +21,7 @@ app.get('/about', function (req, res) {
 
  
 //Make scheduled API call
-//apiTask.apiUpdate();
+database.apiUpdate();
 
 // Check query validity -- should be modified later according to needs
 function isValid(x) {
