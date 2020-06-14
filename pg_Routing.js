@@ -1,4 +1,4 @@
-const { query} = require('./config/database');
+const {query} = require('./config/database');
 const {config_pg} = require('./config/pg_config');
 
 function routeQuery(start, end) {
