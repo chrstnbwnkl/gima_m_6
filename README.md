@@ -50,7 +50,27 @@ SELECT *
 ```
 This query should return a table with a couple of hundred rows. That's our route!
 
+## Prepare Postgres for automatic table updates
+First, we need the ped_count table to have certain columns and a primary key. If you previously created a ped_count table, delete it using the following statement:
+```
+DROP TABLE public.ped_count;
+```
 
+Next, I'll send you an sql file with the table, so that you just have to run the following command (cmd inside the same folder where the file exists):
+```
+psql -U postgres -d database -f ped_count.sql
+```
+Now, you should be all set up! Open VS Code, then open a terminal inside VSC, cd into the folder where the Git repository lives and run
+```
+git pull
+```
+and then
+```
+nodemon app
+```
+and the webserver is hosting at localhost port 5000! Also, the Melbourne pedestrian data will be updated every minute in the background.
+
+```
 Things to do:
 
 - [x] Add connection to Postgres server
