@@ -36,6 +36,8 @@
     </nav>
     </div>
     <div id="input" style="background-color: #38f094;">
+        <div class="row">
+            <div class="col">
         <form action="submitCoords">
         <div class="container" id="input-container" style="background-color: #38f094;">
             <div class="input-group" style="padding-top: 10px;"><input class="form-control" type="text" id="from" name="from" placeholder="From..."></div>
@@ -45,6 +47,20 @@
         </div>
     </form>
     </div>
+    <div class="col"><div class="input-color" style="margin-top: 10px; margin-left: 80px; float: left; clear: both;">
+        <input type="text" value="Shortest Route" />
+        <div class="color-box" id="above" style="background-color: #e84423;"></div>
+    </div></div>
+    <div class="col"><div class="input-color" id="below" style="margin-top: 10px; margin-left: -80px; float: left;">
+        <input type="text" value="Least crowded Route" />
+        <div class="color-box" style="background-color: #362fed;"></div>
+    </div></div>
+    </div>
+    </div>
+    <div class="container-fluid" id="description" style="background-color: #38f094; width: 1000px; padding-right:0;
+    padding-left:0;
+    margin-right:auto;
+    margin-left:auto"><ul id="list"></ul></div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
