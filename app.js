@@ -21,7 +21,7 @@ app.get('/about', function (req, res) {
 
  
 //Make scheduled API call
-database.apiUpdate();
+//database.apiUpdate();
 
 // Check query validity -- should be modified later according to needs
 function isValid(x) {
@@ -34,7 +34,7 @@ app.post('/navigate', (req, res) => {
     if (isValid(req.body)) {
         from = req.body.from.toString();
         to = req.body.to.toString();
-        const spawn = require("child_process").spawn;
+        
         const pythonProcess = spawn('python',["./test.py", from, to]);
         pythonProcess.stdout.on('data', (data) => {
             coords = JSON.parse(data.toString());
@@ -51,11 +51,11 @@ app.post('/navigate', (req, res) => {
 });
 
 app.post('/route', (req, res, next) => {
-    console.log(req.body);
     from = req.body.from;
     to = req.body.to;
     routing.route(from, to)
       .then((result) => {
+        //console.log("Returned Res:", result);
         res.status(200).json(result);
       })
       .catch((reason) => {
