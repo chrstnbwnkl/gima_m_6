@@ -14,8 +14,8 @@ const idleTimeoutMillis = 30000;
 const connectionTimeoutMillis = 30000;
 // set express server port
 const port_exp = 5000;
-const table = 'at_2po_4pgr';
-const vertices_table = 'at_2po_4pgr_vertices_pgr';
+const table = 'mb_ex_2po_4pgr';
+const vertices_table = 'mb_ex_2po_vertex';
 const input_srid = '4326';
 const output_srid = '4326';
 
