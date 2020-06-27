@@ -21,34 +21,7 @@ app.get('/about', function (req, res) {
 
  
 //Make scheduled API call
-//database.apiUpdate();
-
-// Check query validity -- should be modified later according to needs
-function isValid(x) {
-    return x.from && x.from.toString().trim() !== '' &&
-        x.to && x.to.toString().trim() !== '';
-}
-
-// Receive address and spawn Python child process for geocoding, send coordinates back to client
-app.post('/navigate', (req, res) => {
-    if (isValid(req.body)) {
-        from = req.body.from.toString();
-        to = req.body.to.toString();
-        
-        const pythonProcess = spawn('python',["./test.py", from, to]);
-        pythonProcess.stdout.on('data', (data) => {
-            coords = JSON.parse(data.toString());
-            res.json({message: coords});
-            console.log(coords);
-        });
-
-    } else {
-        res.status(422);
-        res.json({
-            message: 'Request can not be empty!'
-        });
-    }
-});
+database.apiUpdate();
 
 app.post('/route', (req, res, next) => {
     from = req.body.from;

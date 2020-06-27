@@ -73,7 +73,7 @@ WHERE api.sensor_id = ped_count.sensor_id;
         , (err, res) => {
             //console.log(err, res);
           });
-          exec("Rscript krige.R", (error, stdout, stderr) => {
+          exec("Rscript krige_update.R", (error, stdout, stderr) => {
             if (error) {
               console.error(`exec error: ${error}`);
               return;
