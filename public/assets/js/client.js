@@ -18,13 +18,25 @@ var style_quick = {
 const mymap = L.map('issmap', {
     zoomControl: false
 }).setView([-37.812248, 144.962056], 15);
-L.control.zoom({
-     position:'bottomleft'
-}).addTo(mymap);
+
+// L.control.zoom({
+//      position:'bottomleft'
+// }).addTo(mymap);
+
 const attr = '&copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const tiles = L.tileLayer(tileUrl,{ attr });
 tiles.addTo(mymap);
+
+var sidebar = L.control.sidebar({autopan: true}).addTo(mymap);
+
+var panelContent = {
+    id: 'userinfo',                     // UID, used to access the panel
+    tab: '',  // content can be passed as HTML string,
+    pane: '<h1>Test</h1><ul id="list"></ul>',
+    title: 'Directions',              // an optional pane header
+};
+sidebar.addPanel(panelContent);
 var group_new = L.layerGroup(null);
 var group_quick = L.layerGroup(null);
 var sourceMarker = L.marker([-37.812248, 144.962056], {
@@ -106,6 +118,7 @@ form.addEventListener('submit', event => {
         document.getElementById("list").appendChild(li);
       }
         btn.innerHTML = 'Go';
+        sidebar.open('userinfo');
     }
     getCoords()
     .catch(err => {

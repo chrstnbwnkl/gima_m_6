@@ -50,3 +50,6 @@ html, body {
   float: left;
   clear:both;
 }
+.user-info {
+  margin-top: 200px;
+}

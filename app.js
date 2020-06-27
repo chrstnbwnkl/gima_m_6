@@ -20,8 +20,8 @@ app.get('/about', function (req, res) {
  })
 
  
-//Make scheduled API call
-database.apiUpdate();
+//Make scheduled API call and call R script
+//database.apiUpdate();
 
 app.post('/route', (req, res, next) => {
     from = req.body.from;
