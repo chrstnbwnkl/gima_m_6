@@ -1,27 +1,8 @@
-# Module 6: Our Smart Routing App!
+# Public Health and the City
 
-If you now want to run the server, you need some additional adjustments in Postgres and Python. First, create a table in pgAdmin with the following statement:
-```SQL
-CREATE TABLE public.ped_count
-(
-    date date,
-    "time" time without time zone,
-    sensor_id numeric(2,0),
-    direction_1 numeric(6,0),
-    direction_2 numeric(6,0),
-    total_of_directions numeric(6,0),
-    date_time timestamp without time zone
-)
-```
-Second, you'll need Anaconda to run Python from. In the Anaconda prompt, create a new environment for the module 6 project with the following statements:
-```
-conda create --name m6
-conda install osmnx
-```
-Lastly, open the Anaconda navigator, activate the environment you just created and launch VS Code from there. Then, in VS Code, you might need to change the Python interpreter, which can be done by pressing CTRL + SHIFT + P and then type Python Interpreter. Select the Anaconda environment you just created and you're good to go!
-
-## Add pgRouting to Postgres
-Next, you'll need to add routing capabilities to our postgres database. So first of all, we need a graph to route on. Geofrabrik produces downloadable osm data for this purpose for the entire Australian continent [here](https://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf). Also, we need osm2po, which is a software package in Java that produces a postgres database from the osm road data. Download the software [here](http://osm2po.de/releases/osm2po-5.2.43.zip) and unpack it anywhere you want. Put the osm.pbf file you downloaded from Geofabrik into the osm2po folder. To run osm2po, we need to make sure Java runtime is installed, so open a command line prompt, type java and hit enter. If it doesn't recognize the command, you need to download a Java runtime environment [here](https://www.java.com/en/download/). Try the java command again after installing to see if it works. 
+This is a COVID-19 routing application that uses near-real time data from the city of Melbourne's pedestrian counting system to calculate 'least crowded routes' between to points. As of now, this is a locally hosted application, so some preparation steps are necessary. 
+## Install PostgreSQL with PostGIS and pgRouting
+First, make sure you have a current version of PostgreSQL as well as PostGIS and pgRouting installed. Next, you'll need a routable graph. Geofrabrik produces downloadable osm data for this purpose for the entire Australian continent [here](https://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf). Also, we need osm2po, which is a software package in Java that produces a postgres database from the osm road data. Download the software [here](http://osm2po.de/releases/osm2po-5.2.43.zip) and unpack it anywhere you want. Put the osm.pbf file you downloaded from Geofabrik into the osm2po folder. To run osm2po, we need to make sure Java runtime is installed, so open a command line prompt, type java and hit enter. If it doesn't recognize the command, you need to download a Java runtime environment [here](https://www.java.com/en/download/). Try the java command again after installing to see if it works. 
 
 Next, we want to change the config of osm2po so that it includes postprocessing for pgRouting. Open the osm2po.config file, scroll down to the postprocessing section. There you'll see a bunch of commands starting with #postp.X.class. Remove the # character for the very first option "postp.0.class" and the third option "postp.1.class". Save and close the file. Now we can run osm2po from the command line. Start a command prompt in the osm2po folder and type the following command: 
 ```
