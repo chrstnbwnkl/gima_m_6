@@ -33,7 +33,7 @@ var sidebar = L.control.sidebar({autopan: true}).addTo(mymap);
 var panelContent = {
     id: 'userinfo',                     // UID, used to access the panel
     tab: '',  // content can be passed as HTML string,
-    pane: '<h1>Test</h1><ul id="list"></ul>',
+    pane: '<ul id="list"></ul>',
     title: 'Directions',              // an optional pane header
 };
 sidebar.addPanel(panelContent);
