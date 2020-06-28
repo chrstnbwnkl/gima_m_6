@@ -20,7 +20,7 @@ app.get('/about', function (req, res) {
  })
 
  
-//Make scheduled API call and call R script
+//Make scheduled API call and call R script; uncomment for background updates
 //database.apiUpdate();
 
 app.post('/route', (req, res, next) => {
