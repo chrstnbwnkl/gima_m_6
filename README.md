@@ -1,6 +1,6 @@
 # Public Health and the City
 
-This is a COVID-19 themed routing application that uses near-real time data from the city of Melbourne's pedestrian counting system to calculate 'least crowded routes' between to points. As of now, this is a locally hosted application, so some preparation steps are necessary. 
+This is a COVID-19 themed routing application that uses near-real time data from the city of Melbourne's pedestrian counting system to calculate 'least crowded routes' between to points. You can find more information about the project [here](https://github.com/chrstnbwnkl/gima_m_6/blob/master/poster/Decrowd_Poster.pdf) As of now, this is a locally hosted application, so some preparation steps are necessary. 
 
 ## Install PostgreSQL with PostGIS and pgRouting
 First, make sure you have a current version of PostgreSQL as well as PostGIS and pgRouting installed, and on PATH. Create a database called 'M6' and create PostGIS and pgRouting extensions:
