@@ -1,0 +1,1 @@
+install.packages(c("RPostgreSQL", 'rpostgis', 'automap', 'sp', 'DBI', 'rdgdal', 'rgeos'))
