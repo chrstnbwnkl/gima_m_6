@@ -1,1 +1,1 @@
-install.packages(c("RPostgreSQL", 'rpostgis', 'automap', 'sp', 'DBI', 'rdgdal', 'rgeos'))
+install.packages(c("RPostgreSQL", 'rpostgis', 'automap', 'sp', 'DBI', 'rdgdal', 'rgeos'), repos='http://cran.us.r-project.org')

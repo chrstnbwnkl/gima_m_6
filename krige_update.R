@@ -7,11 +7,12 @@ library(rgdal)
 library(raster)
 library(rgeos)
 library(dotenv)
-load_dot_env(tmp)Sys.getenv(".env")
+load_dot_env()
+
 
 # Establish Postgres connection
 conn <- RPostgreSQL::dbConnect("PostgreSQL", host = "localhost",
-                               dbname = "M6", user = "postgres", password = password)
+                               dbname = "M6", user = "postgres", password = Sys.getenv("password"))
 
 # Load pixel dump for pre-processing
 shape <- readOGR(dsn = "./GIMA/Module 6/software-testing", layer = "pixel_dump")
