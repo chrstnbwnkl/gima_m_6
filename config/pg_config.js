@@ -18,6 +18,8 @@ const table = 'mb_ex_2po_4pgr';
 const vertices_table = 'mb_ex_2po_vertex';
 const input_srid = '4326';
 const output_srid = '4326';
+// api key
+const apikey = process.env.apikey
 
 exports.config_db = {
     host,
@@ -34,5 +36,5 @@ exports.config_db = {
 exports.exp_config = { port: port_exp };
 
 exports.config_pg = {
-    table, vertices_table, input_srid, input_srid, output_srid,
+    table, vertices_table, input_srid, input_srid, output_srid, apikey
   };

@@ -2,16 +2,15 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const routing = require('./pg_Routing');
-const database = require('./config/database');
-const { exp_config } = require('./config/pg_config');
+const config = require('./config/pg_config');
 var from;
 var to;
-var coords;
 
 app.use(cors());
 
 
-app.listen(5000, () => console.log('Listening at 5000'));
+app.listen(config.exp_config.port, () => console.log(`Listening at ${config.exp_config.port}`));
+console.log()
 app.use(express.static('public'));
 app.use(express.json({limit: '1mb'}));
 

@@ -7,8 +7,8 @@ library(rgdal)
 library(raster)
 library(rgeos)
 library(dotenv)
+setwd(getSrcDirectory()[1])
 load_dot_env()
-
 
 # Establish Postgres connection
 conn <- RPostgreSQL::dbConnect("PostgreSQL", host = "localhost",

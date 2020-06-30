@@ -1,7 +1,7 @@
 const CronJob = require('cron').CronJob;
 const axios = require('axios');
 const pg = require('pg/lib');
-const { config_db } = require('./pg_config');
+const { config_db, config_pg } = require('./pg_config');
 const { exec } = require('child_process');
 const conString = process.env.DATABASE_URL;
 
@@ -54,8 +54,8 @@ const query = function (text, values, callback) {
 
 // Scheduled API query from Melbourne -- maybe change this to ID and total count only?
 var job = new CronJob('*/1 * * * *', async function() {
-    console.log('Performing CRON Job');
-    await axios.get('https://data.melbourne.vic.gov.au/resource/d6mv-s43h.json?$$app_token=f7dQeUuh1t2suGE3q3WMH8PPF&$limit=60')
+    console.log('Performing CRON Job'); config_pg.apikey
+    await axios.get(`https://data.melbourne.vic.gov.au/resource/d6mv-s43h.json?$$app_token=${apikey}&$limit=60`)
     .then( response => {
       //console.log(response);
         const ped_count = JSON.stringify(response.data);

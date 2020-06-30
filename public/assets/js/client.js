@@ -91,16 +91,15 @@ form.addEventListener('submit', event => {
         group_quick.remove();
         routeList_new = [];
         routeList_quick = [];
-        descr = [];
+        seg_length = [];
         str_name = [];
         for (i=0; i<coords.route_new.length; i++) {
              routeList_new.push(L.geoJSON(JSON.parse(coords.route_new[i].geojson), {
                 style: style_new
             }));
-            descr.push(Math.floor(coords.route_new[i].seg_length));
+            seg_length.push(Math.floor(coords.route_new[i].seg_length));
             str_name.push(coords.route_new[i].osm_name);
         }
-        console.log(descr, str_name);
         group_new = L.layerGroup(routeList_new).addTo(mymap);
 
         for (i=0; i<coords.route_quick.length; i++) {
@@ -111,9 +110,9 @@ form.addEventListener('submit', event => {
        group_quick = L.layerGroup(routeList_quick).addTo(mymap);
        
        //Add description
-       for (i = 0; i < descr.length; i++) {
+       for (i = 0; i < seg_length.length; i++) {
         var li = document.createElement("li");
-        var text = document.createTextNode(`${descr[i]}m on ${str_name[i]}`);
+        var text = document.createTextNode(`${seg_length[i]}m on ${str_name[i]}`);
         li.appendChild(text);
         document.getElementById("list").appendChild(li);
       }
