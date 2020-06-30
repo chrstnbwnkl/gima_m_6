@@ -3,7 +3,7 @@
 This is a COVID-19 themed routing application that uses near-real time data from the city of Melbourne's pedestrian counting system to calculate 'least crowded routes' between to points. You can find more information about the project [here](https://github.com/chrstnbwnkl/gima_m_6/blob/master/poster/Decrowd_Poster.pdf). If you're interested in running this app locally, you can download git [here](https://git-scm.com/) and clone this repository. As of now, this is a locally hosted application, so some preparation steps are necessary to make it work. 
 
 ## Install PostgreSQL and create database
-First, make sure you have a current version of PostgreSQL as well as PostGIS and pgRouting installed, and on PATH. CD into the repository folder and run
+First, make sure you have a current version of PostgreSQL as well as PostGIS and pgRouting installed, and on PATH. Next, download the backup file to create the database [here](https://drive.google.com/file/d/1TYK-0L5ZhrpHMyt9AekAUe3fgNVpayU7/view?usp=sharing) (GitHub is allergic to large files). Copy it in your repository, CD into the repository folder and run
 ```psql -U <username> -p <password> -f M6.sql```
 
 ## Prepare R:
