@@ -58,8 +58,12 @@ Things to do:
 - [x] Add connection to Postgres server
 - [x] Insert API data into Postgres
 - [x] Add pedestrian count data periodically to Postgres
-- [x] Show directions
+- [x] Show description
 - [x] Show shortest and least crowded routes
-- [ ] Show statistics comparing the two routes
+- [x] Hide API Key
 - [x] Add "about" page
+- [ ] Show statistics comparing the two routes
 - [ ] Customize map appearance
+- [ ] Group road segments for description
+- [ ] Allow for address input w/ Overpass API geocoding
+- [ ] Try anisotropic kriging
